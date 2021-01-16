@@ -1,0 +1,23 @@
+import React from 'react';
+import { CssBaseline } from '@material-ui/core';
+import './App.css';
+import { Provider } from 'react-redux';
+import AppRoutes from '../components/routes/AppRoutes';
+import config from '../redux/store/config';
+import * as utils from '../utils';
+
+// Redux store
+const store = config();
+
+utils.checkAuthToken(store);
+
+const App = () => {
+	return(
+		<Provider store={store}>
+			<CssBaseline />
+			<AppRoutes />
+		</Provider>
+	);
+};
+
+export default App;
