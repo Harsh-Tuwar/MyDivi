@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 import rootReducer from '../rootReducers';
 
 const middlewares = [];
-let useDevTools = false;
+// let useDevTools = false;
 
 middlewares.push(thunkMiddleware);
 
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 
 	middlewares.push(loggerMiddleware);
 
-	useDevTools = true;
+	// useDevTools = true;
 }
 
 /**
@@ -36,7 +36,7 @@ const config = (preloadState) => {
 		preloadState,
 		compose(
 			applyMiddleware(...middlewares),
-			(useDevTools) ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null
+			// (useDevTools) ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null
 		)
 	);
 };
