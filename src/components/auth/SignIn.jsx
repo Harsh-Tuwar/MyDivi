@@ -16,10 +16,10 @@ import { connect } from 'react-redux';
 import { Copyright } from '../misc';
 import { Link } from 'react-router-dom';
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons';
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import * as utils from '../../utils';
 import { setCurrentUser } from '../../redux/modules/auth/authActions';
+import * as utils from '../../utils';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

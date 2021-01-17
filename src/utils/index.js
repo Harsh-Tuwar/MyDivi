@@ -3,25 +3,16 @@ import { auth } from '../firebase';
 import { SET_CURRENT_USER } from '../redux/modules/auth/authTypes';
 
 export const checkAuthToken = async (store) => {
-	const userData = await getStorage('mydivi_user');
-
-	if (userData) {
-		const now = Date.now();
-		const exp = new Date(userData.expireOn);
-
-		if (exp < now) {
-			auth.signOut()
-				.then((u) => {
-					console.log('done', u);
-					removeStorage('mydivi_user');
-				});
-		} else {
+	auth.onAuthStateChanged(async (u) => {
+		if (u) {
 			store.dispatch({
 				type: SET_CURRENT_USER,
-				payload: userData
+				payload: u
 			});
+		} else {
+			await auth.signOut();
 		}
-	}
+	});
 };
 
 export const setStorage = async (key, val) => {

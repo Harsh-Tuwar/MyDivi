@@ -9,9 +9,17 @@ import * as utils from '../utils';
 // Redux store
 const store = config();
 
-utils.checkAuthToken(store);
-
 const App = () => {
+	React.useEffect(() => {
+		const test = async () => {
+			if (window.location.pathname != '/reset') {
+				await utils.checkAuthToken(store);
+			}
+		};
+		
+		test();
+	}, []);
+
 	return(
 		<Provider store={store}>
 			<CssBaseline />
