@@ -12,7 +12,10 @@ const store = config();
 const App = () => {
 	React.useEffect(() => {
 		const test = async () => {
-			if (window.location.pathname != '/reset') {
+			if (
+				window.location.pathname != '/reset' &&
+				window.location.pathname != '/signup'
+			) {
 				await utils.checkAuthToken(store);
 			}
 		};

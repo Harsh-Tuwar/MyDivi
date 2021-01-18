@@ -13,6 +13,7 @@ export const checkAuthToken = async (store) => {
 			await auth.signOut();
 		}
 	});
+
 };
 
 export const setStorage = async (key, val) => {
