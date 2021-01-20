@@ -2,6 +2,8 @@ import lf from 'localforage';
 import { auth } from '../firebase';
 import { SET_CURRENT_USER } from '../redux/modules/auth/authTypes';
 
+export const drawerWidth = 240;
+
 export const checkAuthToken = async (store) => {
 	auth.onAuthStateChanged(async (u) => {
 		if (u) {

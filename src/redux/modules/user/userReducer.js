@@ -1,7 +1,8 @@
-import { SHOW_ALERT } from './userTypes';
+import { SHOW_ALERT, TOGGLE_DRAWER_STATE } from './userTypes';
 
 const initialState = {
-	alertObj: {}
+	alertObj: {},
+	drawerState: true
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,12 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				alertObj: action.payload
+			};
+		
+		case TOGGLE_DRAWER_STATE:
+			return {
+				...state,
+				drawerState: action.payload
 			};
 		
 		default:
