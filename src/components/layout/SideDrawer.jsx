@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		[theme.breakpoints.up('sm')]: {
-			width: `calc(100% - ${drawerWidth}px)`,
 			marginLeft: drawerWidth,
+			zIndex: theme.zIndex.drawer + 1,
 		},
 	},
 	menuButton: {
@@ -71,7 +71,7 @@ const SideDrawer = ({ component: Component, properties }) => {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap>
-						Responsive drawer
+						MyDivi
           			</Typography>
 				</Toolbar>
 			</AppBar>

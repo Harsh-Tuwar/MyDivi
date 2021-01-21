@@ -1,21 +1,42 @@
-import { Button, Grid, Paper, Container, makeStyles, CssBaseline, Typography } from '@material-ui/core';
+import { Grid, Container, makeStyles, CssBaseline, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { setCurrentUser } from '../../redux/modules/auth/authActions';
-import * as utils from '../../utils';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { auth } from '../../firebase';
-import { SideDrawer } from '../layout';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
-
+	dashFont: {
+		fontFamily: 'futura-pt,system-ui,Helvetica Neue,sans-serif',
+	},
+	boldFont: {
+		fontWeight: 'bold'
+	},
+	greetings: {
+		fontSize: '33px',
+	},
+	caption: {
+		color: 'RGB(119, 129, 138)',
+		fontSize: 14
+	}
 }));
 
 const Dashboard = (props) => {
 	const me = auth.currentUser;
 	let uname = 'User';
+	const classes = useStyles();
 
-	console.log(props.test);
+	const getGreetings = () => {
+		const today = new Date();
+		const currHr = today.getHours();
+
+		if (currHr < 12) {
+			return 'Good Morning';
+		} else if (currHr < 18) {
+			return 'Good Afternoon';
+		} else {
+			return 'Good Evening';
+		}
+	};
 
 	if (me && me.displayName && me.displayName != '') { uname = me.displayName; }
 
@@ -25,38 +46,22 @@ const Dashboard = (props) => {
 			<Grid container component="main">
 				<CssBaseline />
 				<Grid item>
-					{/* <Paper> */}
-					<Typography component="h2" variant="h6" gutterBottom>
-						Welcome {uname}!
+					<Typography component="h4" className={clsx(classes.greetings, classes.dashFont, classes.boldFont)} variant="h4" gutterBottom paragraph>
+						{getGreetings()},  {uname}!
 					</Typography>
-					<Button
-						variant="outlined"
-						color="primary"
-						onClick={async () => {
-							await utils.removeStorage('mydivi_user');
-							props.setCurrentUser();
-						}}
-					>
-						Log out
-					</Button>
-					{/* </Paper> */}
+					<Typography component="p" variant="caption" gutterBottom paragraph className={clsx(classes.dashFont, classes.boldFont, classes.caption)}>
+						Here is what is happening with your MyDivi account today. 
+					</Typography>
 				</Grid>
 			</Grid>
 		</Container>
 	);
 };
 
-Dashboard.propTypes = {
-	setCurrentUser: PropTypes.func.isRequired,
-	test: PropTypes.string
-};
-
 const mapStateToProps = state => ({
-	auth: state.auth,
-	user: state.user
+	auth: state.auth
 });
  
 export default connect(
-	mapStateToProps,
-	{ setCurrentUser }
+	mapStateToProps
 )(Dashboard);

@@ -12,7 +12,7 @@ const AppRoutes = () => {
 				<Route exact path="/reset" component={ResetPass} />
 				<Route exact path="/signup" component={SignUp} />
 				<Switch>
-					<PrivateRoute exact path="/dash" component={() => <Dashboard test="test" />}></PrivateRoute>
+					<PrivateRoute exact path="/dash" component={Dashboard}></PrivateRoute>
 				</Switch>
 			</Router>
 		</>
