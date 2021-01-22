@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { auth } from '../../firebase';
 import clsx from 'clsx';
+import { NewPortofolioCard } from '../misc';
 
 const useStyles = makeStyles((theme) => ({
 	dashFont: {
@@ -43,7 +44,7 @@ const Dashboard = (props) => {
 	return (
 		<Container>
 			<CssBaseline />
-			<Grid container component="main">
+			<Grid container component="main" direction='column' spacing={4}>
 				<CssBaseline />
 				<Grid item>
 					<Typography component="h4" className={clsx(classes.greetings, classes.dashFont, classes.boldFont)} variant="h4" gutterBottom paragraph>
@@ -52,6 +53,12 @@ const Dashboard = (props) => {
 					<Typography component="p" variant="caption" gutterBottom paragraph className={clsx(classes.dashFont, classes.boldFont, classes.caption)}>
 						Here is what is happening with your MyDivi account today. 
 					</Typography>
+				</Grid>
+				<Grid item>
+					<Typography component="h6" className={clsx(classes.dashFont, classes.boldFont)} variant="button" gutterBottom paragraph>
+						Your Portfolios
+					</Typography>
+					<NewPortofolioCard />
 				</Grid>
 			</Grid>
 		</Container>
