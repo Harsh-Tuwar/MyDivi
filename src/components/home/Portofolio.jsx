@@ -50,7 +50,7 @@ const getStepContent = (step) => {
 	}
 };
 
-const PortfolioStepper = ({ handleBack, handleNext, handleReset, activeStep, setActiveStep }) => {
+const PortfolioStepper = ({ handleBack, handleNext, handleReset, activeStep }) => {
 	const classes = useStyles();
 	const steps = getSteps();
 
@@ -115,7 +115,7 @@ const Portofolio = () => {
 					</Typography>
 				</Grid>
 				<Grid item>
-					<PortfolioStepper handleNext={handleNext} handleBack={handleBack} handleReset={handleReset} activeStep={activeStep} setActiveStep={setActiveStep}/>
+					<PortfolioStepper handleNext={handleNext} handleBack={handleBack} handleReset={handleReset} activeStep={activeStep}/>
 				</Grid>
 			</Grid>
 		</Container>
@@ -126,8 +126,7 @@ PortfolioStepper.propTypes = {
 	handleNext: PropTypes.func.isRequired,
 	handleBack: PropTypes.func.isRequired,
 	handleReset: PropTypes.func.isRequired,
-	activeStep: PropTypes.number.isRequired,
-	setActiveStep: PropTypes.func.isRequired
+	activeStep: PropTypes.number.isRequired
 };
  
 export default Portofolio;
