@@ -14,9 +14,7 @@ import React from 'react';
 import {
 	ExitToApp,
 	Home,
-	Inbox,
-	ListAlt,
-	Mail,
+	ListAlt
 } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,10 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const DrawerItems = (props) => {
 	const classes = useStyles();
 	const itemsTop = [
-		{ label: 'Home', icon: <Home /> },
-		{ label: 'Inbox', icon: <Inbox /> },
-		{ label: 'Send Email', icon: <Mail /> },
-		{ label: 'Drafts', icon: <Inbox /> }
+		{ label: 'Dashboard', icon: <Home /> }
 	];
 
 	const itemsBottom = [

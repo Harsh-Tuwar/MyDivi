@@ -1,11 +1,12 @@
 import React from 'react';
-import { Paper, makeStyles, IconButton, withStyles, Typography } from '@material-ui/core';
+import { Card, makeStyles, IconButton, withStyles, CardContent, CardActions } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { Add } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
-		height: 200,
-		width: 200,
+		height: 120,
+		width: 120,
 		borderRadius: 15,
 		display: 'flex'
 	}
@@ -25,13 +26,17 @@ const NewPortofolioCard = () => {
 	const classes = useStyles();
 
 	return (
-		<Paper className={classes.paper} elevation={4}>
-			<div style={{ margin: 'auto' }}>
-				<ColorButton color="primary" size="medium">
-					<Add fontSize='small' />
-				</ColorButton>
-			</div>
-		</Paper>
+		<Link to="/portfolio">
+			<Card className={classes.paper} elevation={4}>
+				<CardContent style={{ margin: 'auto' }}>
+					<CardActions>
+						<ColorButton color="primary" size="medium">
+							<Add fontSize='small' />
+						</ColorButton>
+					</CardActions>
+				</CardContent>
+			</Card>
+		</Link>
 	);
 };
  

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import { SignIn, ResetPass, SignUp } from '../auth';
-import { Dashboard } from '../home';
+import { Dashboard, Portofolio } from '../home';
 import PrivateRoute from '../private-route/PrivateRoute';
 
 const AppRoutes = () => {
@@ -13,6 +13,7 @@ const AppRoutes = () => {
 				<Route exact path="/signup" component={SignUp} />
 				<Switch>
 					<PrivateRoute exact path="/dash" component={Dashboard}></PrivateRoute>
+					<PrivateRoute exact path="/portfolio" component={Portofolio}></PrivateRoute>
 				</Switch>
 			</Router>
 		</>

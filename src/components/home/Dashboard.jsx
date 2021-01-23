@@ -18,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
 	caption: {
 		color: 'RGB(119, 129, 138)',
 		fontSize: 14
+	},
+	gridItem: {
+		marginTop: 20
+	},
+	portcards: {
+		height: 150,
+		overflow: 'auto',
 	}
 }));
 
@@ -46,7 +53,7 @@ const Dashboard = (props) => {
 			<CssBaseline />
 			<Grid container component="main" direction='column' spacing={4}>
 				<CssBaseline />
-				<Grid item>
+				<Grid item >
 					<Typography component="h4" className={clsx(classes.greetings, classes.dashFont, classes.boldFont)} variant="h4" gutterBottom paragraph>
 						{getGreetings()},  {uname}!
 					</Typography>
@@ -54,11 +61,23 @@ const Dashboard = (props) => {
 						Here is what is happening with your MyDivi account today. 
 					</Typography>
 				</Grid>
-				<Grid item>
+				<Grid item className={clsx(classes.gridItem)}>
 					<Typography component="h6" className={clsx(classes.dashFont, classes.boldFont)} variant="button" gutterBottom paragraph>
 						Your Portfolios
 					</Typography>
-					<NewPortofolioCard />
+					<Grid container spacing={5} className={classes.portcards}>
+						<Grid item>
+							<NewPortofolioCard />
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item className={classes.gridItem}>
+					<Typography component="h6" className={clsx(classes.dashFont, classes.boldFont)} variant="button" gutterBottom paragraph>
+						Your Cashflow
+					</Typography>
+					<Typography component="p" variant="caption" align="center" gutterBottom paragraph className={clsx(classes.dashFont, classes.boldFont, classes.caption)}>
+						Nothing to show at this time.
+					</Typography>
 				</Grid>
 			</Grid>
 		</Container>
