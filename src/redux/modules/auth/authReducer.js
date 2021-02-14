@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from './authTypes';
+import { SET_CURRENT_USER } from "./authTypes";
 
 const initialState = {
 	loggedIn: false,

@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import React from 'react';
-import { SignIn, ResetPass, SignUp } from '../auth';
-import { Dashboard, Portofolio } from '../home';
-import PrivateRoute from '../private-route/PrivateRoute';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import { SignIn, ResetPass, SignUp } from "../auth";
+import { Dashboard, Portofolio } from "../home";
+import PrivateRoute from "../private-route/PrivateRoute";
 
 const AppRoutes = () => {
 	return (

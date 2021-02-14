@@ -1,22 +1,22 @@
-import { Grid, Container, makeStyles, CssBaseline, Typography } from '@material-ui/core';
-import { connect } from 'react-redux';
-import React from 'react';
-import { auth } from '../../firebase';
-import clsx from 'clsx';
-import { NewPortofolioCard } from '../misc';
+import { Grid, Container, makeStyles, CssBaseline, Typography } from "@material-ui/core";
+import { connect } from "react-redux";
+import React from "react";
+import { auth } from "../../firebase";
+import clsx from "clsx";
+import { NewPortofolioCard } from "../misc";
 
 const useStyles = makeStyles((theme) => ({
 	dashFont: {
-		fontFamily: 'futura-pt,system-ui,Helvetica Neue,sans-serif',
+		fontFamily: "futura-pt,system-ui,Helvetica Neue,sans-serif",
 	},
 	boldFont: {
-		fontWeight: 'bold'
+		fontWeight: "bold"
 	},
 	greetings: {
-		fontSize: '33px',
+		fontSize: "33px",
 	},
 	caption: {
-		color: 'RGB(119, 129, 138)',
+		color: "RGB(119, 129, 138)",
 		fontSize: 14
 	},
 	gridItem: {
@@ -24,29 +24,29 @@ const useStyles = makeStyles((theme) => ({
 	},
 	portcards: {
 		height: 150,
-		overflow: 'auto',
+		overflow: "auto",
 	}
 }));
 
 const Dashboard = (props) => {
 	const me = auth.currentUser;
-	let uname = 'User';
 	const classes = useStyles();
+	let uname = "User";
 
 	const getGreetings = () => {
 		const today = new Date();
 		const currHr = today.getHours();
 
 		if (currHr < 12) {
-			return 'Good Morning';
+			return "Good Morning";
 		} else if (currHr < 18) {
-			return 'Good Afternoon';
+			return "Good Afternoon";
 		} else {
-			return 'Good Evening';
+			return "Good Evening";
 		}
 	};
 
-	if (me && me.displayName && me.displayName != '') { uname = me.displayName; }
+	if (me && me.displayName && me.displayName != "") { uname = me.displayName; }
 
 	return (
 		<Container>

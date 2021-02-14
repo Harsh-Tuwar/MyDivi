@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import rootReducer from '../rootReducers';
+import { createStore, applyMiddleware, compose } from "redux";
+import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
+import rootReducer from "../rootReducers";
 
 const middlewares = [];
 // let useDevTools = false;
@@ -15,7 +15,7 @@ middlewares.push(thunkMiddleware);
  */
 
 // eslint-disable-next-line no-undef
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
 	const loggerMiddleware = createLogger({
 		// ...options
 	});

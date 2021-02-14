@@ -8,27 +8,27 @@ import {
 	makeStyles,
 	TextField,
 	Typography,
-} from '@material-ui/core';
-import { Copyright } from '../misc';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { auth } from '../../firebase';
+} from "@material-ui/core";
+import { Copyright } from "../misc";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { auth } from "../../firebase";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
 	},
 	avatar: {
 		margin: theme.spacing(1),
 		backgroundColor: theme.palette.secondary.main,
 	},
 	form: {
-		width: '100%', // Fix IE 11 issue.
+		width: "100%", // Fix IE 11 issue.
 		marginTop: theme.spacing(3),
 	},
 	submit: {
@@ -38,10 +38,10 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
 	const classes = useStyles();
-	const [fname, setFName] = React.useState('');
-	const [lname, setLName] = React.useState('');
-	const [email, setEmail] = React.useState('');
-	const [pass, setPass] = React.useState('');
+	const [fname, setFName] = React.useState("");
+	const [lname, setLName] = React.useState("");
+	const [email, setEmail] = React.useState("");
+	const [pass, setPass] = React.useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

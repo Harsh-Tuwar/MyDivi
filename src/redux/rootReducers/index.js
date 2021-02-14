@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux';
-import authReducer from '../modules/auth/authReducer';
-import userReducer from '../modules/user/userReducer';
+import { combineReducers } from "redux";
+import authReducer from "../modules/auth/authReducer";
+import userReducer from "../modules/user/userReducer";
 
 /**
  * Root Reducer which will hold list of app reducers

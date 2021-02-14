@@ -1,20 +1,20 @@
-import { CssBaseline, Container, Grid, Typography, makeStyles, Stepper, Step, StepLabel, StepContent, Paper, Button } from '@material-ui/core';
-import React from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import { CssBaseline, Container, Grid, Typography, makeStyles, Stepper, Step, StepLabel, StepContent, Paper, Button } from "@material-ui/core";
+import React from "react";
+import clsx from "clsx";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
 	myFont: {
-		fontFamily: 'futura-pt,system-ui,Helvetica Neue,sans-serif'
+		fontFamily: "futura-pt,system-ui,Helvetica Neue,sans-serif"
 	},
 	boldFont: {
-		fontWeight: 'bold'
+		fontWeight: "bold"
 	},
 	header: {
 		fontSize: 33
 	},
 	root: {
-		width: '100%',
+		width: "100%",
 	},
 	button: {
 		marginTop: theme.spacing(1),
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const getSteps = () => {
-	return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+	return ["Select campaign settings", "Create an ad group", "Create an ad"];
 };
 
 const getStepContent = (step) => {
@@ -39,14 +39,14 @@ const getStepContent = (step) => {
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.`;
 		case 1:
-			return 'An ad group contains one or more ads which target a shared set of keywords.';
+			return "An ad group contains one or more ads which target a shared set of keywords.";
 		case 2:
 			return `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`;
 		default:
-			return 'Unknown step';
+			return "Unknown step";
 	}
 };
 
@@ -77,7 +77,7 @@ const PortfolioStepper = ({ handleBack, handleNext, handleReset, activeStep }) =
 										onClick={handleNext}
 										className={classes.button}
 									>
-										{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+										{activeStep === steps.length - 1 ? "Finish" : "Next"}
 									</Button>
 								</div>
 							</div>

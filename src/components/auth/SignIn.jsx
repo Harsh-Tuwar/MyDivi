@@ -1,4 +1,4 @@
-import { auth } from '../../firebase';
+import { auth } from "../../firebase";
 import {
 	Avatar,
 	Box,
@@ -11,40 +11,39 @@ import {
 	Paper,
 	TextField,
 	Typography
-} from '@material-ui/core';
-import { connect } from 'react-redux';
-import { Copyright } from '../misc';
-import { Link } from 'react-router-dom';
-import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons';
-import { setCurrentUser } from '../../redux/modules/auth/authActions';
-import * as utils from '../../utils';
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+} from "@material-ui/core";
+import { connect } from "react-redux";
+import { Copyright } from "../misc";
+import { Link } from "react-router-dom";
+import { LockOutlined as LockOutlinedIcon } from "@material-ui/icons";
+import { setCurrentUser } from "../../redux/modules/auth/authActions";
+import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		height: '100vh',
+		height: "100vh",
 	},
 	image: {
-		backgroundImage: 'url(https://source.unsplash.com/random)',
-		backgroundRepeat: 'no-repeat',
+		backgroundImage: "url(https://source.unsplash.com/random)",
+		backgroundRepeat: "no-repeat",
 		backgroundColor:
-			theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
+			theme.palette.type === "light" ? theme.palette.grey[50] : theme.palette.grey[900],
+		backgroundSize: "cover",
+		backgroundPosition: "center",
 	},
 	paper: {
 		margin: theme.spacing(8, 4),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
 	},
 	avatar: {
 		margin: theme.spacing(1),
 		backgroundColor: theme.palette.secondary.main,
 	},
 	form: {
-		width: '100%', // Fix IE 11 issue.
+		width: "100%", // Fix IE 11 issue.
 		marginTop: theme.spacing(1),
 	},
 	submit: {
@@ -54,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = (props) => {
 	const classes = useStyles();
-	const [email, setEmail] = React.useState('');
-	const [pass, setPass] = React.useState('');
+	const [email, setEmail] = React.useState("");
+	const [pass, setPass] = React.useState("");
 	const [err, setErr] = React.useState({});
 
 	const handleSubmit = (e) => {
@@ -81,7 +80,7 @@ const SignIn = (props) => {
 
 	useEffect(() => {
 		if (props.auth.loggedIn) {
-			props.history.push('dash');
+			props.history.push("dash");
 		}
 	});
 
@@ -98,7 +97,7 @@ const SignIn = (props) => {
 					<form className={classes.form} noValidate>
 						<TextField
 							error={Object.keys(err).length > 0}
-							helperText={Object.keys(err).length > 0 ? 'Incorrect Email Address!': ''}
+							helperText={Object.keys(err).length > 0 ? "Incorrect Email Address!": ""}
 							variant="outlined"
 							margin="normal"
 							required
@@ -113,7 +112,7 @@ const SignIn = (props) => {
 						/>
 						<TextField
 							error={Object.keys(err).length > 0}
-							helperText={Object.keys(err).length > 0 ? 'Incorrect Email Address!': ''}
+							helperText={Object.keys(err).length > 0 ? "Incorrect Email Address!": ""}
 							variant="outlined"
 							margin="normal"
 							required
@@ -148,7 +147,7 @@ const SignIn = (props) => {
 							</Grid>
 							<Grid item>
 								<Link to="/signup" variant="body2">
-									{'Don\'t have an account? Sign Up'}
+									{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>
 						</Grid>

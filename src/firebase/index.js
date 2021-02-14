@@ -1,17 +1,16 @@
-import firebase from 'firebase/app';
+import firebase from "firebase/app";
 
-import 'firebase/auth';
-import 'firebase/firestore';
-
+import "firebase/auth";
+import "firebase/firestore";
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyCOgHLnkznD-PDWIwjB5y5zDnEvc56GSYo',
-	authDomain: 'mydivi-4c81d.firebaseapp.com',
-	projectId: 'mydivi-4c81d',
-	storageBucket: 'mydivi-4c81d.appspot.com',
-	messagingSenderId: '784965753205',
-	appId: '1:784965753205:web:82a6921ddf3065c15f9b3c',
-	measurementId: 'G-KJG61WWLQJ'
+	apiKey: process.env.REACT_APP_API_KEY,
+	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_APP_ID,
+	measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 firebase.initializeApp(firebaseConfig);

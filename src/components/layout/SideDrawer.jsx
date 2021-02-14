@@ -8,33 +8,34 @@ import {
 	Toolbar,
 	Typography,
 	useTheme
-} from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
-import PropTypes from 'prop-types';
-import React from 'react';
-import DrawerItems from './DrawerItems';
-import { drawerWidth } from '../../utils';
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Menu as MenuIcon } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React from "react";
+import DrawerItems from "./DrawerItems";
+import { drawerWidth } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		display: 'flex',
+		display: "flex",
 	},
 	drawer: {
-		[theme.breakpoints.up('sm')]: {
+		[theme.breakpoints.up("sm")]: {
 			width: drawerWidth,
 			flexShrink: 0,
 		},
 	},
 	appBar: {
-		[theme.breakpoints.up('sm')]: {
+		[theme.breakpoints.up("sm")]: {
 			marginLeft: drawerWidth,
 			zIndex: theme.zIndex.drawer + 1,
 		},
 	},
 	menuButton: {
 		marginRight: theme.spacing(2),
-		[theme.breakpoints.up('sm')]: {
-			display: 'none',
+		[theme.breakpoints.up("sm")]: {
+			display: "none",
 		},
 	},
 	drawerPaper: {
@@ -70,16 +71,18 @@ const SideDrawer = ({ component: Component, properties }) => {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
-						MyDivi
-          			</Typography>
+					<Link to="/">
+						<Typography variant="h6" noWrap style={{ color: "white" }}>
+							MyDivi
+						</Typography>
+					</Link>
 				</Toolbar>
 			</AppBar>
 			<nav className={classes.drawer} aria-label="mailbox folders">
 				<Hidden smUp implementation="css">
 					<Drawer
 						variant="temporary"
-						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+						anchor={theme.direction === "rtl" ? "right" : "left"}
 						open={mobileOpen}
 						onClose={handleDrawerToggle}
 						classes={{

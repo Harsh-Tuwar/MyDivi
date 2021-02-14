@@ -10,40 +10,40 @@ import {
 	makeStyles,
 	Paper,
 	Typography,
-} from '@material-ui/core';
-import { auth } from '../../firebase';
-import { connect } from 'react-redux';
-import { MyAlert } from '../misc';
-import { RotateLeft } from '@material-ui/icons';
-import PropTypes from 'prop-types';
-import React from 'react';
+} from "@material-ui/core";
+import { auth } from "../../firebase";
+import { connect } from "react-redux";
+import { MyAlert } from "../misc";
+import { RotateLeft } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
 	pHeader: {
-		fontWeight: 'bold',
+		fontWeight: "bold",
 		marginLeft: 5,
-		[theme.breakpoints.up('sm')]: {
-			width: '40vw'
+		[theme.breakpoints.up("sm")]: {
+			width: "40vw"
 		},
-		width: '80vw'
+		width: "80vw"
 	},
 	iph: {
-		textAlign: 'center'
+		textAlign: "center"
 	},
 	paperContainer: {
-		[theme.breakpoints.up('sm')]: {
-			width: '40vw'
+		[theme.breakpoints.up("sm")]: {
+			width: "40vw"
 		},
-		width: '80vw'
+		width: "80vw"
 	},
 	frmCtrl: {
 		marginTop: theme.spacing(3)
 	},
 	sendBtn: {
 		marginTop: theme.spacing(3),
-		float: 'left',
-		background: 'hsla(290,60%,70%,0.3);',
+		float: "left",
+		background: "hsla(290,60%,70%,0.3);",
 	},
 	linkToHome: {
 		marginTop: theme.spacing(1),
@@ -52,28 +52,28 @@ const useStyles = makeStyles((theme) => ({
 
 const ResetPass = (props) => {
 	const classes = useStyles();
-	const [email, setE] = React.useState('');
+	const [email, setE] = React.useState("");
 	const [showAlert, setShowAlert] = React.useState(false);
-	const [alertMsg, setAlertMsg] = React.useState('');
-	const [alertSeverity, setAlertSeverity] = React.useState('');
-	const [title, setTitle] = React.useState('');
+	const [alertMsg, setAlertMsg] = React.useState("");
+	const [alertSeverity, setAlertSeverity] = React.useState("");
+	const [title, setTitle] = React.useState("");
 
 	const handleSubmit = async (e) => {
 		if (email.length > 0) {
 			auth
 				.sendPasswordResetEmail(email)
 				.then(() => {
-					setAlertMsg('Email has been sent! You will be redirected to the sign-in page now!');
-					setAlertSeverity('success');
-					setTitle('Email Sent!');
+					setAlertMsg("Email has been sent! You will be redirected to the sign-in page now!");
+					setAlertSeverity("success");
+					setTitle("Email Sent!");
 
 					setTimeout(() => {
-						props.history.push('/');
+						props.history.push("/");
 					}, 3000);
 				}).catch(() => {
-					setAlertMsg('We can\'t seem to find your email address! Mind confirming it and trying again?');
-					setAlertSeverity('error');
-					setTitle('Error Sending Email!');
+					setAlertMsg("We can't seem to find your email address! Mind confirming it and trying again?");
+					setAlertSeverity("error");
+					setTitle("Error Sending Email!");
 				}).finally(() => {
 					setShowAlert(true);
 				});
@@ -131,7 +131,7 @@ const ResetPass = (props) => {
 				</Box>
 				<Divider />
 				<Button size="small" color="primary" className={classes.linkToHome}
-					onClick={() => props.history.push('/')}
+					onClick={() => props.history.push("/")}
 				> Sign in?</Button>
 			</Grid>
 		</Grid>
