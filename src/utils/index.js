@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import { SET_CURRENT_USER } from "../redux/modules/auth/authTypes";
 
 export const drawerWidth = 240;
-const apiURL = "http://localhost:5000";
+const apiURL = process.env.NODE_ENV === "development" ? "http://localhost:5000" : "https://api.harshtuwar.ml";
 
 export const checkAuthToken = async (store) => {
 	auth.onAuthStateChanged(async (u) => {
@@ -14,9 +14,8 @@ export const checkAuthToken = async (store) => {
 				payload: u
 			});
 			
-			const token = await auth.currentUser.getIdTokenResult();
+			const { token } = await auth.currentUser.getIdTokenResult();
 			
-			console.log(token);
 			setAuthToken(token);
 		} else {
 			await auth.signOut();
@@ -38,7 +37,7 @@ export const removeStorage = async (key) => {
 
 export const setAuthToken = (token) => {
 	if (token) {
-		axios.defaults.headers.common["Authorization"] = token;
+		axios.defaults.headers.common["Authorization"] = token.toString();
 	} else {
 		delete axios.defaults.headers.common["Authorization"];
 	}
@@ -47,8 +46,12 @@ export const setAuthToken = (token) => {
 export const axiosPost = async (url, dataObject) => {
 	if (!dataObject) dataObject = {};
 
-	const result = await axios.post(`${apiURL}/${url}`, dataObject);
+	const me = auth.currentUser;
 
+	if (dataObject.uid === undefined) dataObject.uid = me.uid;
+	
+	const result = await axios.post(`${apiURL}/${url}`, dataObject);
+	
 	return {
 		ok: (result.status === 200),
 		payload: result.data

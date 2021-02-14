@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, makeStyles, IconButton, Typography, withStyles, CardContent, CardActions, FormControl, InputLabel, Input } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import * as utils from "../../utils";
 import { Add } from "@material-ui/icons";
 import { MyDialog } from "../misc";
 
@@ -25,10 +26,20 @@ const ColorButton = withStyles((theme) => ({
 
 const NewPortofolioCard = () => {
 	const classes = useStyles();
+	const [label, setLable] = React.useState("");
 	const [isOpen, setIsOpen] = React.useState(false);
 
 	const handleSuccessClose = async () => {
-		
+		const res = await utils.axiosPost("api/SavePortfolio", { l: label });
+
+		if (res.ok) {
+			console.log("saved");
+		} else {
+			console.log("Error");
+		}
+
+		console.log(res.payload);
+		setIsOpen(false);
 	};
 
 	return (
@@ -58,7 +69,7 @@ const NewPortofolioCard = () => {
 							type="email"
 							placeholder="Enter name"
 							required
-							onChange={(e) => setName(e.currentTarget.value)}
+							onChange={(e) => setLable(e.currentTarget.value)}
 						></Input>
 					</FormControl>
 				</>
