@@ -1,10 +1,11 @@
-import { Grid, Container, makeStyles, CssBaseline, Typography } from "@material-ui/core";
-import { connect } from "react-redux";
-import React from "react";
 import { auth } from "../../firebase";
+import { connect } from "react-redux";
+import { Grid, Container, makeStyles, CssBaseline, Typography } from "@material-ui/core";
+import { NewPortofolioCard, PortfolioCard } from "../misc";
+import { selectPortfolio } from "../../redux/modules/portfolio/portfolioAction";
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import { NewPortofolioCard, PortfolioCard } from "../misc";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
 	dashFont: {
@@ -29,10 +30,14 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Dashboard = ({ portfolio }) => {
+const Dashboard = ({ portfolio, selectPortfolio }) => {
 	const me = auth.currentUser;
 	const classes = useStyles();
 	let uname = "User";
+
+	React.useEffect(() => {
+		selectPortfolio(null);
+	}, []);
 
 	const getGreetings = () => {
 		const today = new Date();
@@ -94,7 +99,8 @@ const Dashboard = ({ portfolio }) => {
 };
 
 Dashboard.propTypes = {
-	portfolio: PropTypes.object.isRequired
+	portfolio: PropTypes.object.isRequired,
+	selectPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -103,5 +109,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-	mapStateToProps
+	mapStateToProps, { selectPortfolio }
 )(Dashboard);

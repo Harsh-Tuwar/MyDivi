@@ -1,7 +1,9 @@
 import React from "react";
 import { Card, CardContent, CardActions, makeStyles, Typography, CardActionArea } from "@material-ui/core";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import {  selectPortfolio } from "../../redux/modules/portfolio/portfolioAction";
 
 const useStyles = makeStyles((theme) => ({
 	infoDiv: {
@@ -24,17 +26,23 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const PortfolioCard = ({ p, index }) => {
+const PortfolioCard = ({ p, index, selectPortfolio }) => {
 	const classes = useStyles();
+	const history = useHistory();
+
+	const handlePortfolioClick = (p) => {
+		selectPortfolio(p);
+		history.push(`/portfolio/${p.pid}`);
+	};
 
 	return (
 		<>
-			<Card className={classes.paper} elevation={4}>
+			<Card className={classes.paper} elevation={4} onClick={() => handlePortfolioClick(p)}>
 				<CardActionArea>
 					<CardContent style={{ margin: "auto" }}>
 						<CardActions style={{ justifyContent: "center" }}>
 							<div className={classes.infoDiv}>
-								<Typography variant="button" paragraph align="center" gutterBottom style={{ paddingTop: 8 }}>{index + 1}</Typography>
+								<Typography variant="button" paragraph align="center" gutterBottom style={{ paddingTop: 8 }}>{++index}</Typography>
 							</div>
 						</CardActions>
 					</CardContent>
@@ -47,11 +55,14 @@ const PortfolioCard = ({ p, index }) => {
 
 PortfolioCard.propTypes = {
 	p: PropTypes.object.isRequired,
-	index: PropTypes.number.isRequired
+	index: PropTypes.number.isRequired,
+	selectPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
 	portfolio: state.portfolio
 });
  
-export default connect(mapStateToProps)(PortfolioCard);
+export default connect(
+	mapStateToProps, { selectPortfolio }
+)(PortfolioCard);

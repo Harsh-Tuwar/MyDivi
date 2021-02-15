@@ -1,7 +1,7 @@
-import { NEW_PORTFOLIO, SET_PORTFOLIOS } from "./portfolioTypes";
+import { SET_PORTFOLIOS, SELECT_PORTFOLIO } from "./portfolioTypes";
 
-export const newPortfolio = () => dispatch => {
-	
+export const selectPortfolio = (p) => dispatch => {
+	dispatch({ type: SELECT_PORTFOLIO, payload: p });
 };
 
 export const setPortfolios = (portfolios) => dispatch => {
@@ -9,3 +9,4 @@ export const setPortfolios = (portfolios) => dispatch => {
 		dispatch({ type: SET_PORTFOLIOS, payload: portfolios });
 	}
 };
+

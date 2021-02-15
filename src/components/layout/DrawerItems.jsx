@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
 import { setCurrentUser } from "../../redux/modules/auth/authActions";
 import * as utils from "../../utils";
 import React from "react";
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const DrawerItems = (props) => {
 	const classes = useStyles();
 	const itemsTop = [
-		{ label: "Dashboard", icon: <Home /> }
+		{ label: "Dashboard", route: "/dash" ,icon: <Home /> }
 	];
 
 	const itemsBottom = [
@@ -47,10 +48,12 @@ const DrawerItems = (props) => {
 				<div className={classes.toolbar} />
 				<List>
 					{itemsTop.map((item, index) => (
-						<ListItem button key={index} >
-							<ListItemIcon>{item.icon}</ListItemIcon>
-							<ListItemText primary={item.label} />
-						</ListItem>
+						<Link to={item.route} key={index} style={{color: "black"}}>
+							<ListItem button>
+								<ListItemIcon>{item.icon}</ListItemIcon>
+								<ListItemText primary={item.label} />
+							</ListItem>
+						</Link>
 					))}
 				</List>
 			</div>

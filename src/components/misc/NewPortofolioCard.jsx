@@ -43,7 +43,12 @@ const NewPortofolioCard = ({ setPortfolios }) => {
 			.collection("Portfolio")
 			.where("uid", "==", me.uid)
 			.onSnapshot((doc) => {
-				const test = doc.docs.map((item) => item.data());
+				const test = doc.docs.map((item) => {
+					const structuredData = item.data();
+					structuredData.id = item.id;
+					return structuredData;
+				});
+				
 				setPortfolios(test);
 			});
 	}, [isOpen]);
