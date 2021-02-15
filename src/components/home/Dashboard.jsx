@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import React from "react";
 import { auth } from "../../firebase";
 import clsx from "clsx";
-import { NewPortofolioCard } from "../misc";
+import PropTypes from "prop-types";
+import { NewPortofolioCard, PortfolioCard } from "../misc";
 
 const useStyles = makeStyles((theme) => ({
 	dashFont: {
@@ -23,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: 20
 	},
 	portcards: {
-		height: 150,
+		height: 208,
 		overflow: "auto",
 	}
 }));
 
-const Dashboard = (props) => {
+const Dashboard = ({ portfolio }) => {
 	const me = auth.currentUser;
 	const classes = useStyles();
 	let uname = "User";
@@ -69,6 +70,14 @@ const Dashboard = (props) => {
 						<Grid item>
 							<NewPortofolioCard />
 						</Grid>
+						{
+							portfolio.portfolios &&
+							portfolio.portfolios.map((p, index) => {
+								return <Grid key={index} item>
+									<PortfolioCard p={p} index={index} />
+								</Grid>;
+							})
+						}
 					</Grid>
 				</Grid>
 				<Grid item className={classes.gridItem}>
@@ -84,10 +93,15 @@ const Dashboard = (props) => {
 	);
 };
 
+Dashboard.propTypes = {
+	portfolio: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
-	auth: state.auth
+	auth: state.auth,
+	portfolio: state.portfolio
 });
- 
+
 export default connect(
 	mapStateToProps
 )(Dashboard);

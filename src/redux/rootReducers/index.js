@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import authReducer from "../modules/auth/authReducer";
 import userReducer from "../modules/user/userReducer";
+import portfolioReducer from "../modules/portfolio/portfolioReducer";
 
 /**
  * Root Reducer which will hold list of app reducers
@@ -9,7 +10,8 @@ import userReducer from "../modules/user/userReducer";
  */
 const rootReducer = combineReducers({
 	auth: authReducer,
-	user: userReducer
+	user: userReducer,
+	portfolio: portfolioReducer
 });
 
 export default rootReducer;

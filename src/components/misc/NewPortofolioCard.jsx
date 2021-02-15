@@ -1,9 +1,12 @@
 import React from "react";
-import { Card, makeStyles, IconButton, Typography, withStyles, CardContent, CardActions, FormControl, InputLabel, Input } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Card, makeStyles, IconButton, withStyles, CardContent, CardActions, FormControl, InputLabel, Input, Typography } from "@material-ui/core";
 import * as utils from "../../utils";
 import { Add } from "@material-ui/icons";
 import { MyDialog } from "../misc";
+import { auth, firestore } from "../../firebase";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { setPortfolios } from "../../redux/modules/portfolio/portfolioAction";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -11,11 +14,16 @@ const useStyles = makeStyles((theme) => ({
 		width: 120,
 		borderRadius: 15,
 		display: "flex"
+	},
+	label: {
+		paddingLeft: 5,
+		paddingTop: 10
 	}
 }));
 
 const ColorButton = withStyles((theme) => ({
 	root: {
+		fontFamily: "futura-pt,system-ui,Helvetica Neue,sans-serif",
 		color: theme.palette.getContrastText("#003fbf"),
 		backgroundColor: "#003fbf",
 		"&:hover": {
@@ -24,21 +32,31 @@ const ColorButton = withStyles((theme) => ({
 	}
 }))(IconButton);
 
-const NewPortofolioCard = () => {
+const NewPortofolioCard = ({ setPortfolios }) => {
 	const classes = useStyles();
+	const me = auth.currentUser;
 	const [label, setLable] = React.useState("");
 	const [isOpen, setIsOpen] = React.useState(false);
 
+	React.useEffect(() => {
+		firestore
+			.collection("Portfolio")
+			.where("uid", "==", me.uid)
+			.onSnapshot((doc) => {
+				const test = doc.docs.map((item) => item.data());
+				setPortfolios(test);
+			});
+	}, [isOpen]);
+	
 	const handleSuccessClose = async () => {
-		const res = await utils.axiosPost("api/SavePortfolio", { l: label });
+		const res = await utils.axiosPost("SavePortfolio", { l: label });
 
 		if (res.ok) {
 			console.log("saved");
 		} else {
 			console.log("Error");
 		}
-
-		console.log(res.payload);
+		
 		setIsOpen(false);
 	};
 
@@ -53,6 +71,7 @@ const NewPortofolioCard = () => {
 					</CardActions>
 				</CardContent>
 			</Card>
+			<Typography variant="subtitle2" className={classes.label} noWrap={true} paragraph gutterBottom align="justify">Create New</Typography>
 			<MyDialog
 				isOpen={isOpen}
 				handleClose={() => setIsOpen(false)}
@@ -77,5 +96,13 @@ const NewPortofolioCard = () => {
 		</>
 	);
 };
+
+NewPortofolioCard.propTypes = {
+	setPortfolios: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+	portfolio: state.portfolio
+});
  
-export default NewPortofolioCard;
+export default connect(mapStateToProps, { setPortfolios })(NewPortofolioCard);

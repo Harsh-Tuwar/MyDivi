@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import { SET_CURRENT_USER } from "../redux/modules/auth/authTypes";
 
 export const drawerWidth = 240;
-const apiURL = process.env.NODE_ENV === "development" ? "http://localhost:5000" : "https://api.harshtuwar.ml";
+const apiURL = process.env.NODE_ENV === "development" ? "http://localhost:5000/api" : "https://api.harshtuwar.ml/api";
 
 export const checkAuthToken = async (store) => {
 	auth.onAuthStateChanged(async (u) => {

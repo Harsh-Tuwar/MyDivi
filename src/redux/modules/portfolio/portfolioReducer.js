@@ -1,5 +1,5 @@
 import {
-	NEW_PORTFOLIO
+	NEW_PORTFOLIO, SET_PORTFOLIOS
 } from "./portfolioTypes";
 
 const initialState = {
@@ -10,6 +10,12 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
 	switch (type) {
 		case NEW_PORTFOLIO:
+			return {
+				...state,
+				portfolios: payload
+			};
+		
+		case SET_PORTFOLIOS:
 			return {
 				...state,
 				portfolios: payload
